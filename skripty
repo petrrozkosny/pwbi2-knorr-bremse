@@ -38,3 +38,10 @@ ____________________________________________________
 CALCULATE(
     SUM(data[Srazky]),
     data[Lokalita]= "GRAZ")
+
+_______________________________________________
+
+03 suma srazek vsechny roky = 
+CALCULATE(
+    SUM(data[Srazky]),
+    all(dim_datumy[rok]))
