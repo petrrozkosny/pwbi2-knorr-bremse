@@ -148,3 +148,27 @@ Column =
 SWITCH(TRUE(),
 [den tydne] <6 && [statni svatek] = FALSE(),[datum],
 [den tydne]>5, CALCULATE(MIN(dim_datumy[datum]),dim_datumy[den tydne]<6 && dim_datumy[statni svatek] = FALSE() &&dim_datumy[datum] > EARLIER(dim_datumy[datum])))
+
+
+______________________________________________________________
+
+dim_datumy = 
+
+ADDCOLUMNS(
+ADDCOLUMNS(
+SELECTCOLUMNS(
+CALENDARAUTO(),"datum",[Date]),
+"rok",YEAR([datum]),
+"mesic",MONTH([datum]),
+"kvartal",QUARTER([datum]),
+"cislo tydne",WEEKNUM([datum],21),
+"den tydne",WEEKDAY([datum],2),
+"den",DAY([datum]),
+"nazev mesice",FORMAT([datum],"MMM"),
+"nazev dne",FORMAT([datum],"DDD")
+),"statni svatek",
+SWITCH(TRUE(),
+[den] = 8 && [mesic] = 5,TRUE(),
+[den] = 1 && [mesic] = 5,TRUE()))
+
+
