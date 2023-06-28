@@ -123,3 +123,6 @@ IF(
     SELECTEDVALUE(data[mesic]) = 12,
     CALCULATE(SUM(data[Srazky]),ALL(data[mesic])),
     BLANK())
+__________________________________________
+
+=CUBEVALUE("ThisWorkbookDataModel";"[Measures].[suma srazek]";"[data].[mesic].["&C3&"]")
