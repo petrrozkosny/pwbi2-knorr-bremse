@@ -185,3 +185,13 @@ CONCATENATEX(
     FILTER(_tabulka,[rocni srazky ruzyne] = _max_rocni_srazky),
     data[rok],", ")
 
+________________________________________________________
+
+14 text tlacitka = 
+
+SWITCH(TRUE(),
+HASONEFILTER(data[rok]),
+"Přejít na detail roku "&SELECTEDVALUE(data[rok]),
+ISFILTERED(data[rok]),
+"Vyber jediný rok",
+"Kliknutím do sloupce grafu vyberte rok")
