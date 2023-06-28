@@ -62,3 +62,23 @@ CALCULATE(MAX(data[Teplota]))),
 
 return
 if(max_teplota = max_teplota_roky,"CYAN")
+
+_________________________________________________________________
+
+06 pf rocni srazky = 
+-- suma srazek v danem roce a lokalite
+VAR rocni_srazky = SUM(data[Srazky])
+VAR tabulka_srazek = 
+ADDCOLUMNS(
+    ALL(data[rok]),
+"rocni srazky",
+CALCULATE(SUM(data[Srazky])))
+
+VAR min_rocni_srazky = MINX(tabulka_srazek,[rocni srazky])
+VAR max_rocni_srazky = MAXX(tabulka_srazek,[rocni srazky])
+
+RETURN
+SWITCH(TRUE(),
+rocni_srazky = max_rocni_srazky,"CYAN",
+rocni_srazky = min_rocni_srazky,"BROWN",
+"BLUE")
