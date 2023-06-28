@@ -137,3 +137,7 @@ ISFILTERED(data[Lokalita]),
 "Vývoj ročních srážek v lokalitách "&
 CONCATENATEX(DISTINCT(data[Lokalita]),data[Lokalita],", "),
 "Vývoj ročních srážek ve všech lokalitách")
+
+_______________________________________________________
+
+zacatek mesice = EOMONTH(data[Datum],-1)+1 
