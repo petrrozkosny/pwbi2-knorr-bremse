@@ -115,3 +115,11 @@ ________________________________________________________
 CALCULATE(
     SUM(data[Srazky]),
     data[rok] = MAX(data[rok]))
+
+________________________________
+
+11 suma srazek rok = 
+IF(
+    SELECTEDVALUE(data[mesic]) = 12,
+    CALCULATE(SUM(data[Srazky]),ALL(data[mesic])),
+    BLANK())
