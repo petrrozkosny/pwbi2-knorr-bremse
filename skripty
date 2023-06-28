@@ -171,4 +171,17 @@ SWITCH(TRUE(),
 [den] = 8 && [mesic] = 5,TRUE(),
 [den] = 1 && [mesic] = 5,TRUE()))
 
+________________________________________________________________
+
+13 nejdestivejsi rok ruzyne = 
+VAR _tabulka = 
+ADDCOLUMNS(
+    ALL(data[rok]),
+"rocni srazky ruzyne",
+    CALCULATE(SUM(data[Srazky]),data[Lokalita] = "ruzyne"))
+VAR _max_rocni_srazky = MAXX(_tabulka,[rocni srazky ruzyne])
+RETURN
+CONCATENATEX(
+    FILTER(_tabulka,[rocni srazky ruzyne] = _max_rocni_srazky),
+    data[rok],", ")
 
