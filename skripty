@@ -89,3 +89,11 @@ _____________________________________________________
 VAR max_srazky = MAX(data[Srazky])
 return
 CALCULATE(MAX(data[Datum]),data[Srazky] = max_srazky)
+
+_____________________________________________________
+
+08 dny max srazek = 
+CONCATENATEX(
+    FILTER(data,
+    data[Srazky] = MAX(data[Srazky])),
+    data[Datum],", ")
