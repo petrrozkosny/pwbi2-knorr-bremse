@@ -97,3 +97,13 @@ CONCATENATEX(
     FILTER(data,
     data[Srazky] = MAX(data[Srazky])),
     data[Datum],", ")
+
+________________________________________________
+
+09 prumerne rocni srazky = 
+AVERAGEX(
+ADDCOLUMNS(
+    ALL(data[rok]),
+"suma rocni srazky",
+CALCULATE(SUM(data[Srazky]))),
+[suma rocni srazky])
