@@ -126,3 +126,14 @@ IF(
 __________________________________________
 
 =CUBEVALUE("ThisWorkbookDataModel";"[Measures].[suma srazek]";"[data].[mesic].["&C3&"]")
+
+_______________________________________________________
+
+12 nazev grafu = 
+SWITCH(TRUE(),
+HASONEFILTER(data[Lokalita]),
+"Vývoj ročních srážek v lokalitě "&SELECTEDVALUE(data[Lokalita]),
+ISFILTERED(data[Lokalita]),
+"Vývoj ročních srážek v lokalitách "&
+CONCATENATEX(DISTINCT(data[Lokalita]),data[Lokalita],", "),
+"Vývoj ročních srážek ve všech lokalitách")
