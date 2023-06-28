@@ -141,3 +141,10 @@ CONCATENATEX(DISTINCT(data[Lokalita]),data[Lokalita],", "),
 _______________________________________________________
 
 zacatek mesice = EOMONTH(data[Datum],-1)+1 
+
+_________________________________________________________________
+
+Column = 
+SWITCH(TRUE(),
+[den tydne] <6 && [statni svatek] = FALSE(),[datum],
+[den tydne]>5, CALCULATE(MIN(dim_datumy[datum]),dim_datumy[den tydne]<6 && dim_datumy[statni svatek] = FALSE() &&dim_datumy[datum] > EARLIER(dim_datumy[datum])))
