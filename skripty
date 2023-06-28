@@ -82,3 +82,10 @@ SWITCH(TRUE(),
 rocni_srazky = max_rocni_srazky,"CYAN",
 rocni_srazky = min_rocni_srazky,"BROWN",
 "BLUE")
+
+_____________________________________________________
+
+07 den max srazek = 
+VAR max_srazky = MAX(data[Srazky])
+return
+CALCULATE(MAX(data[Datum]),data[Srazky] = max_srazky)
