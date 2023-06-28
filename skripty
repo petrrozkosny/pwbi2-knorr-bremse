@@ -107,3 +107,11 @@ ADDCOLUMNS(
 "suma rocni srazky",
 CALCULATE(SUM(data[Srazky]))),
 [suma rocni srazky])
+
+________________________________________________________
+
+10 suma srazek v poslednim roce = 
+
+CALCULATE(
+    SUM(data[Srazky]),
+    data[rok] = MAX(data[rok]))
