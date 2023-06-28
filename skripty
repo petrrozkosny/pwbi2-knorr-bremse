@@ -45,3 +45,20 @@ _______________________________________________
 CALCULATE(
     SUM(data[Srazky]),
     all(dim_datumy[rok]))
+_______________________________________________________
+
+05 pf maximalni teplota = 
+
+VAR max_teplota =max(data[Teplota])
+
+VAR max_teplota_roky = 
+
+MAXX(
+ADDCOLUMNS(
+    ALL(dim_datumy[rok]),
+"maximalni rocni teplota",
+CALCULATE(MAX(data[Teplota]))),
+[maximalni rocni teplota])
+
+return
+if(max_teplota = max_teplota_roky,"CYAN")
