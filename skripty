@@ -11,3 +11,23 @@ CALENDARAUTO(),"datum",[Date]),
 "nazev mesice",FORMAT([datum],"MMM"),
 "nazev dne",FORMAT([datum],"DDD")
 )
+_________________________________________
+
+01 suma srazek rok 2020 = 
+-- takto ne
+VAR _1 =
+CALCULATE(
+    SUM(data[Srazky]),
+    FILTER(data,data[rok] = 2020))
+-- takto ano, pokud nebude fungovat verze _3
+VAR _2 = 
+CALCULATE(
+    SUM(data[Srazky]),
+    FILTER(ALL(data[rok]),data[rok] = 2020))
+-- takto ano
+VAR _3 = 
+CALCULATE(
+    SUM(data[Srazky]),
+    data[rok] = 2020)
+
+return _3
