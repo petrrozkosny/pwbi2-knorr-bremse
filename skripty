@@ -31,3 +31,10 @@ CALCULATE(
     data[rok] = 2020)
 
 return _3
+
+____________________________________________________
+
+02 suma srazek graz = 
+CALCULATE(
+    SUM(data[Srazky]),
+    data[Lokalita]= "GRAZ")
