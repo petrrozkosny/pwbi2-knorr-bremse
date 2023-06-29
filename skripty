@@ -248,3 +248,14 @@ VAR _kapacita = kapacita[kapacita Value]
 RETURN 
 IF(
     SUM(data[Srazky]) > _kapacita,"red")
+
+_______________________________________
+
+kapacita Value = 
+
+VAR HODNOTA = SELECTEDVALUE('kapacita'[kapacita], 100)
+
+RETURN
+SWITCH(TRUE(),
+ISINSCOPE(data[mesic]),HODNOTA ,
+HODNOTA*12)
