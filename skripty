@@ -195,3 +195,15 @@ HASONEFILTER(data[rok]),
 ISFILTERED(data[rok]),
 "Vyber jediný rok",
 "Kliknutím do sloupce grafu vyberte rok")
+
+___________________________________________________________________
+
+let
+    Source = Excel.Workbook(File.Contents("C:\Users\petrrozkosny\Downloads\data.xlsx"), null, true),
+    data_Sheet = Source{[Item="data",Kind="Sheet"]}[Data],
+    #"Promoted Headers" = Table.PromoteHeaders(data_Sheet, [PromoteAllScalars=true]),
+    foo = Table.TransformColumnNames(#"Promoted Headers",Text.Lower),
+    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"STATION", type text}, {"Lokalita", type text}, {"Datum", type date}, {"Srazky", type number}, {"Teplota", type number}}),
+    #"Renamed Columns" = try Table.RenameColumns(#"Changed Type",{{"Datum", "foo"}}) otherwise Table.RenameColumns(#"Changed Type",{{"Date", "foo"}})
+in
+    #"Renamed Columns"
