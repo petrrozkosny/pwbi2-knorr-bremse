@@ -207,3 +207,13 @@ let
     #"Renamed Columns" = try Table.RenameColumns(#"Changed Type",{{"Datum", "foo"}}) otherwise Table.RenameColumns(#"Changed Type",{{"Date", "foo"}})
 in
     #"Renamed Columns"
+
+______________________________________________________________________
+
+15 suma srazek mesic 12 ly = 
+-- suma srážek v 12. měsíci předchozího roku
+
+CALCULATE(
+    SUM(data[Srazky]),
+    data[mesic] =12,
+    data[rok] = SELECTEDVALUE(data[rok]) - 1)
