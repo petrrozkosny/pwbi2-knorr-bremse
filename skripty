@@ -238,3 +238,13 @@ VAR max_teplota = MAX(data[Teplota])
 VAR _tabulka = CALCULATETABLE(DISTINCT(data[Lokalita]),data[Teplota] = max_teplota)
 RETURN
 CONCATENATEX(_tabulka,data[Lokalita],", ")
+
+____________________________________________
+
+17 pf kapacita = 
+
+VAR _kapacita = kapacita[kapacita Value]
+
+RETURN 
+IF(
+    SUM(data[Srazky]) > _kapacita,"red")
