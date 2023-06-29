@@ -317,3 +317,10 @@ VAR _min_pocet_obyvatel = MINX(_tabulka,[obyvatele])
 return
 
 CONCATENATEX(FILTER(_tabulka,[obyvatele] = _min_pocet_obyvatel),Seznam[Okres],", ")
+
+_____________________________________
+
+cv02 podil obyvatel = 
+SUM(Seznam[Počet obyvatel])
+/
+CALCULATE(SUM(Seznam[Počet obyvatel]),ALL(Seznam[Město]))
