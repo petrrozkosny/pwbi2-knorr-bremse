@@ -230,3 +230,11 @@ CALCULATE(COUNT(data[Datum]),data[Srazky] = 0,NOT ISBLANK(data[Srazky]),data[Lok
 
 RETURN
 _pocet_prselo&" / "&_pocet_neprselo
+
+__________________________________________________________________
+
+cv08 lokality nejvyssi teploty = 
+VAR max_teplota = MAX(data[Teplota])
+VAR _tabulka = CALCULATETABLE(DISTINCT(data[Lokalita]),data[Teplota] = max_teplota)
+RETURN
+CONCATENATEX(_tabulka,data[Lokalita],", ")
