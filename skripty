@@ -371,4 +371,11 @@ ADDCOLUMNS(
 RETURN
 MINX(FILTER(_tabulka_rank,Seznam[Město] = SELECTEDVALUE(Seznam[Město])),[rank])
 
+_________________________________________________________
 
+cv02 pocet zemi = 
+
+CALCULATE(
+    DISTINCTCOUNT(dim_lokality[Zeme]),
+    data[Datum] = MIN(dim_datumy[Date]),
+    CROSSFILTER(data[Lokalita],dim_lokality[Lokalita],Both))
