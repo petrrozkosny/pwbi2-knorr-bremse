@@ -220,7 +220,7 @@ CALCULATE(
 
 _______________________________________________________________
 
-cv08 kategorie dnu = 
+cv07 kategorie dnu = 
 
 VAR _pocet_prselo  = 
 CALCULATE(COUNT(data[Datum]),data[Srazky] >0,data[Lokalita] = "RUZYNE")
