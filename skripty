@@ -324,3 +324,17 @@ cv02 podil obyvatel =
 SUM(Seznam[Počet obyvatel])
 /
 CALCULATE(SUM(Seznam[Počet obyvatel]),ALL(Seznam[Město]))
+
+___________________________
+
+01 index mesta = 
+
+VAR _tabulka = 
+    ADDCOLUMNS(
+    ALL(Seznam),
+    "rank",
+    RANKX(ALL(Seznam),CALCULATE(SUM(Seznam[Počet obyvatel]))))
+
+RETURN 
+
+MINX(FILTER(_tabulka,Seznam[Město] = SELECTEDVALUE(Seznam[Město])),[rank])
