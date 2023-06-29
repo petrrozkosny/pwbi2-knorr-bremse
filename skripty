@@ -259,3 +259,33 @@ RETURN
 SWITCH(TRUE(),
 ISINSCOPE(data[mesic]),HODNOTA ,
 HODNOTA*12)
+
+______________________________________________________________
+
+16 maximalni rocni srazky napric lokalitami = 
+
+VAR hodnota = 
+CEILING(
+MAXX(
+ADDCOLUMNS(
+    FILTER(
+    ALL(data[rok],data[Lokalita]),
+    data[Lokalita] = SELECTEDVALUE(data[Lokalita])),
+"rocni srazky",
+CALCULATE(SUM(data[Srazky]))),
+[rocni srazky]) * 1.1,100)
+
+VAR mesic =
+
+CEILING(
+MAXX(
+ADDCOLUMNS(
+    FILTER(
+    ALL(data[rok],data[mesic],data[Lokalita]),
+    data[Lokalita] = SELECTEDVALUE(data[Lokalita])),
+"rocni srazky",
+CALCULATE(SUM(data[Srazky]))),
+[rocni srazky]) * 1.1,10)
+
+return
+IF(SELECTEDVALUE('scope'[scope]) = "rok",hodnota,mesic)
