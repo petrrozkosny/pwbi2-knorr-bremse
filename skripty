@@ -217,3 +217,16 @@ CALCULATE(
     SUM(data[Srazky]),
     data[mesic] =12,
     data[rok] = SELECTEDVALUE(data[rok]) - 1)
+
+_______________________________________________________________
+
+cv08 kategorie dnu = 
+
+VAR _pocet_prselo  = 
+CALCULATE(COUNT(data[Datum]),data[Srazky] >0,data[Lokalita] = "RUZYNE")
+
+VAR _pocet_neprselo =
+CALCULATE(COUNT(data[Datum]),data[Srazky] = 0,NOT ISBLANK(data[Srazky]),data[Lokalita] = "RUZYNE")
+
+RETURN
+_pocet_prselo&" / "&_pocet_neprselo
