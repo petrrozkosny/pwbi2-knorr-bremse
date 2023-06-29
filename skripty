@@ -303,3 +303,17 @@ ___________________________________________________________________
         SUM(data[Srazky]),
         USERELATIONSHIP(dim_roky[rok],dim_datumy[rok]))
 )
+______________________________________
+
+cv01 okres nejmensi pocet obyvatel = 
+VAR _tabulka = 
+ADDCOLUMNS(
+ALL(Seznam[Okres]),
+"obyvatele",
+CALCULATE(SUM(Seznam[Počet obyvatel])))
+
+VAR _min_pocet_obyvatel = MINX(_tabulka,[obyvatele])
+
+return
+
+CONCATENATEX(FILTER(_tabulka,[obyvatele] = _min_pocet_obyvatel),Seznam[Okres],", ")
