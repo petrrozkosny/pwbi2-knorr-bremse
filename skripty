@@ -338,3 +338,17 @@ VAR _tabulka =
 RETURN 
 
 MINX(FILTER(_tabulka,Seznam[Město] = SELECTEDVALUE(Seznam[Město])),[rank])
+
+____________________________________________________________
+
+cv04 nejvetsi mesto v okrese liberec = 
+
+VAR max_pocet_obyvatel = 
+CALCULATE(MAX(Seznam[Počet obyvatel]),Seznam[Okres] = "Liberec")
+
+RETURN
+CONCATENATEX(
+    FILTER(Seznam,
+    Seznam[Okres] = "Liberec"
+    && Seznam[Počet obyvatel] = max_pocet_obyvatel),
+Seznam[Město])
