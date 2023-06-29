@@ -289,3 +289,17 @@ CALCULATE(SUM(data[Srazky]))),
 
 return
 IF(SELECTEDVALUE('scope'[scope]) = "rok",hodnota,mesic)
+
+___________________________________________________________________
+
+23 srazky dle typu obdobi = 
+
+    IF(
+        SELECTEDVALUE(typ_obdobi[typ_obdobi]) = "datum od",
+        CALCULATE(
+        SUM(data[Srazky]),
+        dim_datumy[rok] >= SELECTEDVALUE(dim_roky[rok])),
+            CALCULATE(
+        SUM(data[Srazky]),
+        USERELATIONSHIP(dim_roky[rok],dim_datumy[rok]))
+)
