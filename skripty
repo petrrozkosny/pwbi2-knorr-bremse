@@ -352,3 +352,23 @@ CONCATENATEX(
     Seznam[Okres] = "Liberec"
     && Seznam[Počet obyvatel] = max_pocet_obyvatel),
 Seznam[Město])
+
+_______________________________________________________________________
+
+index mesta z vyberu = 
+VAR _tabulka =
+ADDCOLUMNS(
+CALCULATETABLE(DISTINCT(Seznam[Město]),ALLSELECTED(Seznam)),
+"obyvatele",
+CALCULATE(SUM(Seznam[Počet obyvatel])))
+
+VAR _tabulka_rank = 
+ADDCOLUMNS(
+    _tabulka,
+    "rank",
+    RANKX(_tabulka,[obyvatele]))
+
+RETURN
+MINX(FILTER(_tabulka_rank,Seznam[Město] = SELECTEDVALUE(Seznam[Město])),[rank])
+
+
